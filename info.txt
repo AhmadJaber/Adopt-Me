@@ -1,0 +1,31 @@
+### One
+    import React from 'react';
+
+    eslint will throw an error, that (React) is not defined.Because eslint doesnot know how React works
+    To make it understand React well we have to add some packages
+
+    * yarn add -D babel-eslint eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react
+    a11y -> stands for accessibility
+
+### Two -> jsx
+    Q - What JSX Do?
+    It's just translating those HTML tags into React.createElement calls. That's it. Really. No more magic here.
+
+### Three -> component-name
+    Composite Component name must be (capitalize).
+    If you make it lowercase, it will try to have pet as a web component and not a React component.
+
+### Four -> expression
+    const x = name.toUpperCase()
+
+    here as a whole it is an statement, but right side is an expression.
+    (if...else) is a statement. But (ternery operator is an expression)
+
+### Five - Hooks
+    * All hooks name starts with "use". This is applicable for custom-hooks.
+
+    * A fundamental thing about (hooks) is they never go inside of (if...else) statement.
+    Also (for...loop) or any kind of logic.
+
+    React keeps track of hooks by their order i am calling this things.If a hook is inside of a
+    conditional logic it can break the order which will be a disaster.
