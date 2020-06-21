@@ -4,7 +4,7 @@ import Pet from './Pet';
 const PetCollection = ({ pets }) => (
   <div className='search'>
     {pets.length === 0 ? (
-      <h1>No Pets Found!</h1>
+      <h1>No Pets Found!!</h1>
     ) : (
       pets.map((pet) => (
         <Pet

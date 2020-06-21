@@ -35,7 +35,6 @@ const SearchParams = () => {
 
   return (
     <div className='search-params'>
-      <h1>{location}</h1>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -67,6 +66,7 @@ const SearchParams = () => {
             <option value='peru'>Peru</option>
             <option value='tomato'>Tomato</option>
             <option value='cornflowerblue'>Cornflowerblue</option>
+            <option value='#333'>Black</option>
           </select>
         </label>
 
