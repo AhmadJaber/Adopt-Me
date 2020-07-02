@@ -1,16 +1,32 @@
 import React from 'react';
-import pet from '@frontendmasters/pet';
-import { navigate } from '@reach/router';
+import pet, { Photo } from '@frontendmasters/pet';
+import { navigate, RouteComponentProps } from '@reach/router';
 
 import Carousel from './Carousel';
 import ErrorBoundary from './ErrorBoundary';
 import ThemeContext from './ThemeContext';
 import Modal from './Modal';
 
-class Details extends React.Component {
-  state = { loading: true, showModal: false };
+class Details extends React.Component<RouteComponentProps<{ id: string }>> {
+  public state = {
+    loading: true,
+    showModal: false,
+    url: '',
+    name: '',
+    media: [] as Photo[],
+    breed: '',
+    animal: '',
+    description: '',
+    location: '',
+  };
 
-  componentDidMount() {
+  public componentDidMount() {
+    // should be a 404page instead of below
+    if (!this.props.id) {
+      navigate('/');
+      return;
+    }
+
     pet
       .animal(+this.props.id)
       .then(({ animal }) => {
@@ -25,18 +41,16 @@ class Details extends React.Component {
           loading: false,
         });
       }, console.error)
-      .catch((err) => this.setState({ error: err }));
+      .catch((err: Error) => this.setState({ error: err }));
   }
 
-  toggleModal = () => {
-    this.setState((prevState) => {
-      return { showModal: !prevState.showModal };
-    });
+  public toggleModal = () => {
+    this.setState({ showModal: !this.state.showModal });
   };
 
-  adopt = () => navigate(this.state.url);
+  public adopt = () => navigate(this.state.url);
 
-  render() {
+  public render() {
     if (this.state.loading) {
       return <h2>Loading......</h2>;
     }
@@ -88,7 +102,9 @@ class Details extends React.Component {
   }
 }
 
-export default function DetailsErrorBoundary(props) {
+export default function DetailsErrorBoundary(
+  props: RouteComponentProps<{ id: string }>
+) {
   return (
     <ErrorBoundary>
       <Details {...props} />

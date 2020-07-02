@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { ErrorInfo } from 'react';
 import { Link, Redirect } from '@reach/router';
 
 class ErrorBoundary extends React.Component {
-  state = { hasError: false, redirect: false };
+  public state = { hasError: false, redirect: false };
 
-  static getDerivedStateFromError() {
+  public static getDerivedStateFromError() {
     return { hasError: true };
   }
 
-  componentDidCatch(error, info) {
+  public componentDidCatch(error: Error, info: ErrorInfo) {
     console.error('Error Boundary caught an error', error, info);
 
     /*
@@ -29,7 +29,7 @@ class ErrorBoundary extends React.Component {
     */
   }
 
-  componentDidUpdate() {
+  public componentDidUpdate() {
     // i do not need to use this here. componentDidCatch() would be enough
     if (this.state.hasError) {
       setTimeout(() => {
@@ -38,9 +38,9 @@ class ErrorBoundary extends React.Component {
     }
   }
 
-  render() {
+  public render() {
     if (this.state.redirect) {
-      return <Redirect to='/' noThrow />;
+      return <Redirect to='/' />;
     }
 
     if (this.state.hasError) {
