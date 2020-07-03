@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
 import { Router, Link } from '@reach/router';
+import { Provider } from 'react-redux';
+import store from './store';
 
 import SearchParams from './SearchParams';
 import Details from './Details';
-import ThemeContext from './ThemeContext';
 
 const App = () => {
-  const theme = useState('peru');
-
   return (
     <React.StrictMode>
-      <ThemeContext.Provider value={theme}>
+      <Provider store={store}>
         <div className='app'>
           <header>
             <Link to='/'>Adopt Me!</Link>
@@ -22,7 +21,7 @@ const App = () => {
             <Details path='/details/:id' />
           </Router>
         </div>
-      </ThemeContext.Provider>
+      </Provider>
     </React.StrictMode>
   );
 };
