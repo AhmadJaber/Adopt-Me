@@ -2,7 +2,7 @@ import React from 'react';
 import Pet from './Pet';
 
 const PetCollection = ({ pets }) => (
-  <div className='search'>
+  <div className='search' data-testid='search-result'>
     {pets.length === 0 ? (
       <h1>No Pets Found!</h1>
     ) : (
